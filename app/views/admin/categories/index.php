@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             <?php
-                foreach ( $categorys as $category){
+                foreach ( $categories as $category){
             ?>
                 <tr>
                     <th scope="row"><?=$category->getId();?></th>
