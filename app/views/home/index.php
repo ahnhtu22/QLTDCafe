@@ -41,14 +41,14 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
         <div class="container">
-            <a class="navbar-brand fw-bold text-dark" href="index.php?controller=home&action=index">
+            <a class="navbar-brand fw-bold text-dark" href="?controller=home&action=index">
                 <i class="fa-solid fa-mug-hot text-warning me-2"></i> QLTDCafe
             </a>
             <div class="ms-auto">
-                <a href="index.php?controller=user&action=login" class="btn btn-outline-dark btn-sm me-2">
+                <a href="?controller=user&action=login" class="btn btn-outline-dark btn-sm me-2">
                     <i class="fa-solid fa-right-to-bracket me-1"></i> Đăng nhập
                 </a>
-                <a href="index.php?controller=user&action=register" class="btn btn-brown btn-sm">
+                <a href="?controller=user&action=register" class="btn btn-brown btn-sm">
                     <i class="fa-solid fa-user-plus me-1"></i> Đăng ký
                 </a>
             </div>
@@ -61,7 +61,7 @@
             <h1 class="display-4 fw-bold mb-3">Quản lý Thực đơn Quán Cafe</h1>
             <p class="lead mb-4">Hệ thống quản lý thực đơn, gọi món và vận hành quán cafe chuyên nghiệp, nhanh chóng.</p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="index.php?controller=user&action=login" class="btn btn-light btn-lg px-4 fw-semibold text-dark">
+                <a href="?controller=user&action=login" class="btn btn-light btn-lg px-4 fw-semibold text-dark">
                     Bắt đầu ngay <i class="fa-solid fa-arrow-right ms-2"></i>
                 </a>
             </div>
