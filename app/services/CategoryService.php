@@ -3,7 +3,7 @@
 require_once APP_ROOT.'/app/models/Category.php';
 
 class CategoryService{
-    public function getAllCategorys(){
+    public function getAllCategories(){
         $categories = [];
         $dbConnection = new DBConnection();
 
