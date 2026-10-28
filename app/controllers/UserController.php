@@ -27,9 +27,9 @@ class UserController
             $_SESSION['role'] = $user->getRole();
 
             if ($user->getRole() == 'admin') {
-                header('Location: ?controller=home');
+                header('Location: ?controller=admin&action=index');
             } else {
-                header('Location: ?controller=home');
+                header('Location: ?controller=pos&action=index');
             }
 
             exit();
@@ -63,7 +63,7 @@ class UserController
 
         if ($user != null) {
             $error = 'Tên đăng nhập đã tồn tại!';
-            include APP_ROOT . '/app/views/homen/register.php';
+            include APP_ROOT . '/app/views/home/register.php';
             return;
         }
 
