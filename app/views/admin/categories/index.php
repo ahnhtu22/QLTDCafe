@@ -12,7 +12,7 @@
 <body>
     <div class ="container">
         <h3 class= "text-center text-uppercase text-success mt-3 mb-3">Quản lý loại đồ uống</h3>
-        <a href="?controller=addPatient" class='btn btn-success'>Thêm loại đồ uống mới </a>
+        <a href="?controller=addCategory" class='btn btn-success'>Thêm loại đồ uống mới </a>
     <table class="table mt-3">
         <thead>
             <tr>
