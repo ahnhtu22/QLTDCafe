@@ -34,7 +34,7 @@ class CategoryService{
 
             if($conn != null) {
                 $name = $category->getName();
-                $description = $category->getGender();
+                $description = $category->getDescription();
                 $sql = "INSERT INTO categories (name, description) VALUES ('$name', '$description')"; // csdl
 
                 $conn->exec($sql);
