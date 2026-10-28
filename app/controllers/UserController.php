@@ -7,7 +7,7 @@ class UserController
     // Hiển thị trang đăng nhập
     public function login()
     {
-        include_once APP_ROOT . '/app/views/user/login.php';
+        include_once APP_ROOT . '/app/views/home/login.php';
     }
 
     // Kiểm tra thông tin đăng nhập
@@ -35,14 +35,14 @@ class UserController
             exit();
         } else {
             $error = 'Tên đăng nhập hoặc mật khẩu không đúng!';
-            include APP_ROOT . '/app/views/user/login.php';
+            include APP_ROOT . '/app/views/home/login.php';
         }
     }
 
     // Hiển thị trang đăng ký
     public function register()
     {
-        include_once APP_ROOT . '/app/views/user/register.php';
+        include_once APP_ROOT . '/app/views/home/register.php';
     }
 
     // Xử lý đăng ký tài khoản
@@ -53,7 +53,7 @@ class UserController
 
         if ($username == '' || $password == '') {
             $error = 'Vui lòng nhập đầy đủ thông tin!';
-            include APP_ROOT . '/app/views/user/register.php';
+            include APP_ROOT . '/app/views/home/register.php';
             return;
         }
 
@@ -63,7 +63,7 @@ class UserController
 
         if ($user != null) {
             $error = 'Tên đăng nhập đã tồn tại!';
-            include APP_ROOT . '/app/views/user/register.php';
+            include APP_ROOT . '/app/views/homen/register.php';
             return;
         }
 
