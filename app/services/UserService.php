@@ -131,11 +131,10 @@ class UserService {
         }
     }
 
-    public function login($username, $password) {
+   public function login($username, $password) {
         $user = $this->getUserByUsername($username);
 
-        // Sử dụng password_verify để khớp với mật khẩu đã mã hóa lúc đăng ký
-        if ($user != null && password_verify($password, $user->getPassword())) {
+        if ($user != null && $password === $user->getPassword()) {
             return $user;
         }
 
