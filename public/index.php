@@ -1,9 +1,9 @@
 <?php
-require_once ('../app/config/config.php');
+require_once __DIR__ . '/../app/config/config.php';
 require_once APP_ROOT.'/app/libs/DbConnection.php';
 
-$controller = isset($_GET['controller']) ? $_GET['controller'] : 'user';
-$action = isset($_GET['action']) ? $_GET['action'] : 'login';
+$controller = $_GET['controller'] ?? 'home';
+$action = $_GET['action'] ?? 'index';
 
 if ($controller == 'user') {
     require_once APP_ROOT.'/app/controllers/UserController.php';
@@ -12,8 +12,14 @@ if ($controller == 'user') {
     if ($action == 'login') {
         $userController->login();
     } 
+    else if ($action == 'authenticate') {
+        $userController->authenticate();
+    }
     else if ($action == 'register') {
         $userController->register();
+    }
+    else if ($action == 'store') {
+        $userController->store();
     } 
     else if ($action == 'logout') {
         $userController->logout();
