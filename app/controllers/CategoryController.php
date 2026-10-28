@@ -3,9 +3,16 @@
 
     class CategoryController
     {
+        public function index()
+        {
+            $categoryService = new CategoryService();
+            $categories = $categoryService->getAllCategories();
+            
+            include APP_ROOT . '/app/views/admin/categories/index.php';
+        }
         public function add()
         {
-            include_once APP_ROOT . '/app/views/category/add.php';
+            include_once APP_ROOT . '/app/views/admin/categories/add.php';
         }
 
 
@@ -18,7 +25,7 @@
             $categoryService = new CategoryService();
             $categoryService->addCategory($category);
 
-            header('Location: ?controller=home');
+            header('Location: ?controller=category&action=index');
         }
 
         public function edit($id)
@@ -27,7 +34,7 @@
                 $categoryService = new CategoryService();
                 $category = $categoryService->getCategoryById($id);
 
-                include APP_ROOT . '/app/views/category/edit.php';
+                include APP_ROOT . '/app/views/admin/categories/edit.php';
 
             }else{
                 echo 'Id is null';
@@ -42,7 +49,7 @@
             $category_new = new Category($id, $name, $description);
             $categoryService = new CategoryService();
             $categoryService->updateCategory($category_new);
-            header('Location: ?controller=home');
+            header('Location: ?controller=category&action=index');
         }
 
         public function delete($id)
@@ -51,7 +58,7 @@
                 $categoryService = new CategoryService();
                 $category = $categoryService->getCategoryById($id);
 
-                include APP_ROOT . '/app/views/category/delete.php';
+                include APP_ROOT . '/app/views/admin/categories/delete.php';
 
             }else{
                 echo 'Id is null';
@@ -63,7 +70,7 @@
 
             $categoryService = new CategoryService();
             $categoryService->deleteCategory($category);
-            header('Location: ?controller=home');
+            header('Location: ?controller==category&action=index');
         }
     }
 
