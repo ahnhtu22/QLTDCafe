@@ -44,7 +44,8 @@
         <?php endif; ?>
 
         <!-- Form đăng nhập -->
-        <form action="?controller=user&action=authenticate" method="POST">
+        <!--<form action="?controller=user&action=authenticate" method="POST">-->
+        <form action="index.php?controller=user&action=authenticate" method="POST">
 
             <div class="mb-3">
                 <label for="username" class="form-label">
