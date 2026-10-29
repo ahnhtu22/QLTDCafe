@@ -1,3 +1,6 @@
+<?php
+    /** @var Drink[] $drinks */
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -55,7 +58,7 @@
                 <i class="bi bi-cup-straw text-primary me-2"></i>Danh sách đồ uống
             </h3>
             <a href="?controller=admin&action=add" class="btn btn-primary">
-                <i class="bi bi-plus-circle me-1"></i> Thêm đồ uống
+                <i class="bi bi-plus-circle me-1"></i> Thêm mới đồ uống
             </a>
         </div>
 
@@ -92,7 +95,7 @@
                                     <td class="align-middle">
                                         <?php if($drink->getImageUrl()): ?>
                                             <img src="<?= htmlspecialchars($drink->getImageUrl()) ?>"
-                                                 class="rounded border" width="60" height="45" style="object-fit: cover;" alt="Đồ uống">
+                                                 class="rounded border" width="60" height="45" style="object-fit: cover;" alt="Hình đồ uống">
                                         <?php endif; ?>
                                     </td>
                                     <td class="align-middle text-muted"><?= htmlspecialchars($drink->getDescription() ?? '') ?></td>
