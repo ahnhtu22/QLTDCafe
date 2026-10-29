@@ -131,13 +131,28 @@ class UserService {
         }
     }
 
-   public function login($username, $password) {
-        $user = $this->getUserByUsername($username);
+    public function deleteUser($id) {
+        $dbConnection = new DbConnection();
 
-        if ($user != null && $password === $user->getPassword()) {
+        if ($dbConnection != null) {
+            $conn = $dbConnection->getConnection();
+
+            if ($conn != null) {
+                $sql = "DELETE FROM users WHERE id = '$id'";
+                $conn->exec($sql);
+            }
+        }
+    }
+
+   public function login($username, $password) {
+    $user = $this->getUserByUsername($username);
+
+    if ($user != null) {
+        if (password_verify($password, $user->getPassword()) || $password === $user->getPassword()) {
             return $user;
         }
-
-        return null;
     }
+
+    return null;
+}
 }
