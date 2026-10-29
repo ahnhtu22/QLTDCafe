@@ -70,7 +70,7 @@
 
             $categoryService = new CategoryService();
             $categoryService->deleteCategory($category);
-            header('Location: ?controller==category&action=index');
+            header('Location: ?controller=category&action=index');
         }
     }
 
