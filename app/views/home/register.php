@@ -66,6 +66,21 @@
             </div>
 
             <div class="mb-3">
+                <label for="role" class="form-label">Vai trò tài khoản</label>
+
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </span>
+
+                    <select class="form-select" id="role" name="role">
+                        <option value="staff" <?= (isset($_POST['role']) && $_POST['role'] === 'staff') ? 'selected' : '' ?>>Nhân viên (staff)</option>
+                        <option value="admin" <?= (isset($_POST['role']) && $_POST['role'] === 'admin') ? 'selected' : '' ?>>Quản trị viên (admin)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
                 <label for="password" class="form-label">Mật khẩu</label>
 
                 <div class="input-group">
