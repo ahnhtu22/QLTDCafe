@@ -1,0 +1,416 @@
+/* Cấu hình chung & Biến màu sắc */
+:root {
+    --coffee: #5b3827;
+    --coffee-light: #80563d;
+    --cream: #f7f0e4;
+    --cream-dark: #e8dac5;
+    --white: #fffdf8;
+    --text: #38271e;
+    --muted: #8a796b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* 1. TRANG BÁN HÀNG (POS & FORM)*/
+.topbar {
+    background: var(--coffee);
+    color: var(--white);
+}
+
+.topbar .brand {
+    color: var(--white);
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-link-custom {
+    color: var(--cream-dark);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+    background: var(--coffee-light);
+    color: var(--white);
+}
+
+/* Tiêu đề trang bán hàng */
+.page-heading {
+    margin: 30px 0 22px;
+}
+
+.page-heading h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: var(--coffee);
+}
+
+.page-heading p {
+    color: var(--muted);
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Nút thanh toán */
+.btn-checkout {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 16px;
+    background: var(--coffee);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.btn-checkout:hover {
+    background: var(--coffee-light);
+    color: var(--white);
+}
+
+/* Khung nội dung bán hàng */
+.panel {
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(91, 56, 39, .06);
+    padding: 25px;
+    height: auto;
+    min-width: 0;
+}
+
+.panel-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--coffee);
+    margin-bottom: 22px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--cream-dark);
+}
+
+/* Các bước hướng dẫn */
+.info-panel {
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-radius: 8px;
+    padding: 18px;
+    height: auto;
+    min-height: 0;
+    margin-bottom: 12px;
+}
+
+.info-panel h6 {
+    font-weight: bold;
+    color: var(--coffee);
+    margin: 0 0 10px;
+}
+
+.info-panel p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* Ô nhập liệu form */
+.form-control {
+    min-height: 42px;
+    border: 1px solid var(--cream-dark);
+    border-radius: 6px;
+    background-color: var(--white);
+    color: var(--text);
+}
+
+.form-control:focus {
+    border-color: var(--coffee-light);
+    box-shadow: 0 0 0 .2rem rgba(128, 86, 61, .15);
+    background-color: var(--white);
+    color: var(--text);
+}
+
+/* Chân trang */
+.footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 25px 0;
+    border-top: 1px solid var(--cream-dark);
+    margin-top: 40px;
+}
+
+
+/* 2. GIAO DIỆN HÓA ĐƠN*/
+.invoice {
+    max-width: 760px;
+    margin: 30px auto;
+    background: var(--white);
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(91, 56, 39, 0.08);
+    overflow: hidden;
+    border: 1px solid var(--cream-dark);
+}
+
+.invoice-header {
+    background: var(--coffee);
+    color: var(--white);
+    text-align: center;
+    padding: 34px 24px 30px;
+}
+
+.invoice-header .brand {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 0 6px;
+    letter-spacing: 1px;
+}
+
+.invoice-header .tagline {
+    font-size: 12px;
+    color: var(--cream-dark);
+    letter-spacing: 2px;
+    margin: 0 0 15px;
+    text-transform: uppercase;
+}
+
+.invoice-header .header-line {
+    width: 50px;
+    height: 2px;
+    background: var(--coffee-light);
+    margin: 0 auto;
+}
+
+.invoice-body {
+    padding: 30px;
+}
+
+/* Thông tin mã đơn và thời gian */
+.info-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 16px 20px;
+    background: var(--cream);
+    border-radius: 8px;
+    border: 1px solid var(--cream-dark);
+    margin-bottom: 20px;
+}
+
+.info-box .info-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.info-box .info-value {
+    font-weight: bold;
+    color: var(--text);
+    font-size: 14px;
+}
+
+/* Căn giữa tiêu đề hóa đơn */
+.invoice .invoice-title,
+.invoice .invoice-title h2,
+.invoice .section-title {
+    text-align: center;
+    color: var(--coffee);
+}
+
+.invoice .invoice-title h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.invoice .section-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 25px 0 12px;
+}
+
+/* Bảng chi tiết đơn hàng và ghi chú */
+.invoice .table-wrap {
+    width: 100%;
+    margin-top: 12px;
+    overflow-x: auto;
+    border: 1px solid var(--cream-dark);
+    border-radius: 8px;
+}
+
+.invoice .order-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    background: var(--white);
+}
+
+.invoice .order-table th {
+    padding: 14px 16px;
+    background: var(--cream);
+    color: var(--coffee);
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px solid var(--cream-dark);
+}
+
+.invoice .order-table td {
+    padding: 16px;
+    font-size: 14px;
+    color: var(--text);
+    border-bottom: 1px solid #eee8df;
+}
+
+.invoice .order-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.invoice .order-table .drink-name,
+.invoice .order-table .order-price {
+    font-weight: bold;
+    color: var(--coffee);
+}
+
+.invoice .order-table .order-price {
+    white-space: nowrap;
+}
+
+/* Căn chỉnh số lượng và thành tiền trong bảng */
+.invoice .order-table th:nth-child(2),
+.invoice .order-table td:nth-child(2) {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.invoice .order-table th:last-child,
+.invoice .order-table td:last-child {
+    text-align: right;
+}
+
+/* Lời cảm ơn cuối hóa đơn */
+.invoice .thank-you {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+/* Hai nút in và quay lại */
+.invoice .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+    padding: 20px 0 10px;
+    border-top: 1px solid var(--cream-dark);
+}
+
+.invoice .btn {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.invoice .btn-print {
+    background: var(--coffee);
+    color: var(--white);
+    border: 1px solid var(--coffee);
+}
+
+.invoice .btn-back {
+    background: var(--white);
+    color: var(--coffee);
+    border: 1px solid var(--coffee);
+}
+
+.invoice .btn-print:hover {
+    background: var(--coffee-light);
+    border-color: var(--coffee-light);
+}
+
+.invoice .btn-back:hover {
+    background: var(--cream);
+}
+
+
+@media (max-width: 576px) {
+    .page-heading {
+        margin: 22px 0 18px;
+    }
+
+    .page-heading h2 {
+        font-size: 21px;
+    }
+
+    .panel,
+    .info-panel {
+        padding: 18px;
+    }
+    
+    .invoice-body {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .invoice .actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .invoice .btn {
+        width: 100%;
+    }
+
+    .invoice .order-table th,
+    .invoice .order-table td {
+        padding: 12px 8px;
+        font-size: 12px;
+    }
+}
+
+/* Khi in hóa đơn: ẩn nút chức năng và bỏ bóng đổ */
+@media print {
+    body {
+        background: white;
+    }
+
+    .invoice {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        max-width: 100%;
+    }
+
+    .invoice .actions {
+        display: none !important;
+    }
+}
