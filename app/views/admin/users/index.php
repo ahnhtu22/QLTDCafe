@@ -97,10 +97,10 @@
                                             </button>
                                         <?php else: ?>
                                             <a href="?controller=user&action=deleteStaff&id=<?= $user->getId() ?>"
-                                               class="btn btn-danger btn-sm"
+                                               class="btn btn-delete-cafe btn-sm"
                                                onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');"
                                                title="Xóa tài khoản">
-                                                <i class="bi bi-trash"></i> Xóa
+                                                <i class="bi bi-trash"></i>
                                             </a>
                                         <?php endif; ?>
                                     </td>

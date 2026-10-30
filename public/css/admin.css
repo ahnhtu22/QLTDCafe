@@ -6,6 +6,8 @@
     --cafe-primary: #6f4e37;
     --cafe-dark: #4a2e1b;
     --cafe-hover: #543a29;
+    --cafe-light-brown: #b8865d;
+    --cafe-light-hover: #9e6f47;
     --cafe-cream: #fdfbf7;
     --cafe-light: #f5e6d3;
     --cafe-text: #444444;
@@ -94,6 +96,40 @@ body {
     color: #ffffff;
 }
 
+/* 1. Nút Sửa: Màu Nâu Nhạt (Lighter brown than existing browns) */
+.btn-edit-cafe {
+    background-color: var(--cafe-light-brown) !important;
+    border: 1px solid var(--cafe-light-brown) !important;
+    color: #ffffff !important;
+    border-radius: 6px;
+    font-weight: 500;
+    padding: 5px 12px;
+    transition: all 0.2s ease;
+}
+
+.btn-edit-cafe:hover {
+    background-color: var(--cafe-light-hover) !important;
+    border-color: var(--cafe-light-hover) !important;
+    color: #ffffff !important;
+}
+
+/* 2. Nút Xóa: Nâu Trắng (Nền trắng kem, viền nâu, chữ nâu) */
+.btn-delete-cafe {
+    background-color: #ffffff !important;
+    border: 1px solid #d4a373 !important;
+    color: #8c5332 !important;
+    border-radius: 6px;
+    font-weight: 500;
+    padding: 5px 12px;
+    transition: all 0.2s ease;
+}
+
+.btn-delete-cafe:hover {
+    background-color: #f7ede2 !important;
+    border-color: #8c5332 !important;
+    color: #5a2e17 !important;
+}
+
 /* Ô nhập liệu Form (Input, Select, Textarea) */
 .form-control, .form-select {
     border-radius: 8px;
@@ -132,4 +168,3 @@ body {
     padding: 12px 15px;
     vertical-align: middle;
 }
-

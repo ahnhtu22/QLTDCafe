@@ -102,13 +102,13 @@
                                     <td class="text-muted"><?= htmlspecialchars($drink->getDescription() ?? '') ?></td>
                                     <td class="text-center">
                                         <a href="?controller=admin&action=edit&id=<?= $drink->getId() ?>"
-                                           class="btn btn-warning btn-sm me-1" title="Sửa">
+                                           class="btn btn-edit-cafe btn-sm me-1" title="Sửa">
                                             <i class="bi bi-pencil-square"></i> Sửa
                                         </a>
 
                                         <a href="?controller=admin&action=destroy&id=<?= $drink->getId() ?>"
-                                           class="btn btn-danger btn-sm" title="Xóa">
-                                            <i class="bi bi-trash"></i> Xóa
+                                           class="btn btn-delete-cafe btn-sm" title="Xóa">
+                                            <i class="bi bi-trash"></i>
                                         </a>
                                     </td>
                                 </tr>

@@ -52,8 +52,8 @@
 
         <!-- Tiêu đề trang -->
         <div class="page-heading">
-            <h2><i class="bi bi-cart-check-fill me-2"></i>Bán hàng tại quầy (POS)</h2>
-            <p>Chọn nhiều món đồ uống vào cùng một đơn hàng và thanh toán nhanh chóng.</p>
+            <h2><i class="bi bi-cart-check-fill me-2"></i>POS</h2>
+            <p></p>
         </div>
 
         <?php if (!empty($_GET['error'])): ?>
@@ -72,7 +72,7 @@
                 <!-- 1. KHUNG CHỌN MÓN ĐỂ THÊM VÀO ĐƠN -->
                 <div class="panel mb-4">
                     <div class="panel-title">
-                        <i class="bi bi-plus-circle text-warning me-2"></i>Chọn đồ uống vào đơn hàng
+                        <i class="bi bi-plus-circle text-warning me-2"></i>Chọn món
                     </div>
 
                     <!-- Tìm kiếm món bằng PHP MVC -->
@@ -273,7 +273,7 @@
                 <div class="panel">
 
                     <div class="panel-title">
-                        <i class="bi bi-grid-fill text-warning me-2"></i>Thực đơn & Thêm nhanh (1 click)
+                        <i class="bi bi-grid-fill text-warning me-2"></i>Thêm nhanh
                     </div>
 
                     <?php if (!empty($drinks)): ?>
@@ -319,7 +319,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <div class="border-top pt-3">
+                    <!--<div class="border-top pt-3">
                         <h6 class="fw-bold mb-2" style="color: #6f4e37;">
                             <i class="bi bi-info-circle me-1"></i>Quy trình gọi nhiều món:
                         </h6>
@@ -328,7 +328,7 @@
                             <li>Tùy chỉnh số lượng bằng nút <strong>+ / -</strong> trong bảng hóa đơn.</li>
                             <li>Sau khi khách chốt toàn bộ món, bấm <strong>Thanh toán & Xuất hóa đơn</strong>.</li>
                         </ol>
-                    </div>
+                    </div>-->
 
                 </div>
             </div>
