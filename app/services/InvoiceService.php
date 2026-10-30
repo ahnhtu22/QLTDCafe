@@ -18,7 +18,7 @@ class InvoiceService {
             return [];
         }
 
-        $sql = "SELECT * FROM drinks WHERE status = 'Còn món'";
+        $sql = "SELECT * FROM drinks";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
