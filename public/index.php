@@ -89,6 +89,14 @@ if ($controller == 'user') {
         $posController = new PosController();
         if ($action == 'index') {
             $posController->index();
+        } else if ($action == 'addToCart') {
+            $posController->addToCart();
+        } else if ($action == 'updateCart') {
+            $posController->updateCart();
+        } else if ($action == 'removeFromCart') {
+            $posController->removeFromCart();
+        } else if ($action == 'clearCart') {
+            $posController->clearCart();
         } else if ($action == 'checkout') {
             $posController->checkout();
         } else {
