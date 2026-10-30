@@ -9,10 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-
     <!-- CSS chung đồng bộ Cafe -->
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
@@ -47,34 +45,76 @@
                         <span class="info-label">Thời gian:</span>
                         <span class="info-value"><?= htmlspecialchars($invoice->getCreatedAt(), ENT_QUOTES, 'UTF-8'); ?></span>
                     </div>
+
+                    <div>
+                        <span class="info-label">Thu ngân:</span>
+                        <span class="info-value"><?= htmlspecialchars($invoice->getStaffName(), ENT_QUOTES, 'UTF-8'); ?></span>
+                    </div>
+
+                    <div>
+                        <span class="info-label">Trạng thái:</span>
+                        <span class="info-value text-success"><i class="bi bi-check-circle-fill me-1"></i>Đã thanh toán</span>
+                    </div>
                 </div>
 
-                <!-- Chi tiết đồ uống -->
+                <!-- Chi tiết các món đồ uống -->
                 <h3 class="section-title">
-                    <i class="bi bi-list-check me-1"></i>Chi tiết đơn hàng
+                    <i class="bi bi-list-check me-1"></i>Chi tiết các món trong đơn
                 </h3>
 
                 <div class="table-wrap">
                     <table class="order-table">
                         <thead>
                             <tr>
-                                <th>Đồ uống</th>
+                                <th>Tên đồ uống</th>
+                                <th class="text-center">Đơn giá</th>
                                 <th class="text-center">Số lượng</th>
                                 <th class="text-end">Thành tiền</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="drink-name">
-                                    <i class="bi bi-cup-straw me-1 text-muted"></i>
-                                    <?= htmlspecialchars($invoice->getDrinkName(), ENT_QUOTES, 'UTF-8'); ?>
+                            <?php if (!empty($invoiceDetails)): ?>
+                                <?php foreach ($invoiceDetails as $detail): ?>
+                                    <tr>
+                                        <td class="drink-name">
+                                            <i class="bi bi-cup-straw me-1 text-muted"></i>
+                                            <?= htmlspecialchars($detail->getDrinkName(), ENT_QUOTES, 'UTF-8'); ?>
+                                        </td>
+                                        <td class="text-center">
+                                            <?= number_format($detail->getPrice(), 0, ',', '.'); ?> đ
+                                        </td>
+                                        <td class="text-center">
+                                            <?= (int)$detail->getQuantity(); ?>
+                                        </td>
+                                        <td class="order-price text-end">
+                                            <?= number_format($detail->getTotalPrice(), 0, ',', '.'); ?> đ
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td class="drink-name">
+                                        <i class="bi bi-cup-straw me-1 text-muted"></i>
+                                        <?= htmlspecialchars($invoice->getDrinkName(), ENT_QUOTES, 'UTF-8'); ?>
+                                    </td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center"><?= (int)$invoice->getQuantity(); ?></td>
+                                    <td class="order-price text-end">
+                                        <?= number_format($invoice->getTotalPrice(), 0, ',', '.'); ?> đ
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                        <tfoot>
+                            <tr style="background-color: #fdfbf7; font-weight: bold; border-top: 2px solid #6f4e37;">
+                                <td colspan="3" class="text-uppercase" style="padding: 14px 16px; font-size: 15px; color: #4a2e1b;">
+                                    Tổng cộng thanh toán:
                                 </td>
-                                <td class="text-center"><?= (int)$invoice->getQuantity(); ?> ly</td>
-                                <td class="order-price text-end">
+                                <td class="text-end" style="padding: 14px 16px; font-size: 18px; color: #6f4e37;">
                                     <?= number_format($invoice->getTotalPrice(), 0, ',', '.'); ?> đ
                                 </td>
                             </tr>
-                        </tbody>
+                        </tfoot>
                     </table>
                 </div>
 
@@ -111,7 +151,7 @@
             </button>
 
             <a href="?controller=pos&action=index" class="btn btn-back">
-                <i class="bi bi-arrow-left me-1"></i> Quay lại bán hàng
+                <i class="bi bi-arrow-left me-1"></i> Tạo đơn hàng mới
             </a>
         </div>
     </div>
