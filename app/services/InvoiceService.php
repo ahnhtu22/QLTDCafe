@@ -1,5 +1,6 @@
 <?php
 require_once APP_ROOT . '/app/models/Invoice.php';
+require_once APP_ROOT . '/app/models/InvoiceDetail.php';
 require_once APP_ROOT . '/app/models/Drink.php';
 require_once APP_ROOT . '/app/libs/DbConnection.php';
 
@@ -103,7 +104,97 @@ class InvoiceService {
         );
     }
 
-    // Luu hoa don sau khi xac nhan thanh toan
+    // Luu hoa don nhieu mon gom bang invoices va invoice_details (Master - Detail)
+    public function addInvoiceWithDetails(
+        $staff_name,
+        array $cartItems,
+        $total_price,
+        $total_quantity
+    ) {
+        $conn = $this->getDbConnection();
+
+        if (!$conn || empty($cartItems)) {
+            return false;
+        }
+
+        // Tao tom tat ten cac mon (vi du: "Cà phê sữa đá, Bạc xỉu (2 món)")
+        $drinkNames = array_map(function($item) {
+            return $item['name'];
+        }, $cartItems);
+        $summary_name = implode(', ', $drinkNames);
+        if (mb_strlen($summary_name, 'UTF-8') > 145) {
+            $summary_name = mb_substr($summary_name, 0, 140, 'UTF-8') . '...';
+        }
+
+        // 1. Luu vao bang invoices (thong tin chung cua hoa don)
+        $sql = "INSERT INTO invoices
+                (staff_name, drink_name, quantity, total_price)
+                VALUES
+                (:staff_name, :drink_name, :quantity, :total_price)";
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            'staff_name' => $staff_name,
+            'drink_name' => $summary_name,
+            'quantity' => $total_quantity,
+            'total_price' => $total_price
+        ]);
+
+        if (!$result) {
+            return false;
+        }
+
+        $invoice_id = $conn->lastInsertId();
+
+        // 2. Luu chi tiet tung mon vao bang invoice_details
+        $sqlDetail = "INSERT INTO invoice_details
+                      (invoice_id, drink_name, price, quantity, total_price)
+                      VALUES
+                      (:invoice_id, :drink_name, :price, :quantity, :total_price)";
+        $stmtDetail = $conn->prepare($sqlDetail);
+
+        foreach ($cartItems as $item) {
+            $item_total = $item['price'] * $item['quantity'];
+            $stmtDetail->execute([
+                'invoice_id' => $invoice_id,
+                'drink_name' => $item['name'],
+                'price' => $item['price'],
+                'quantity' => $item['quantity'],
+                'total_price' => $item_total
+            ]);
+        }
+
+        return $invoice_id;
+    }
+
+    // Lay danh sach cac mon chi tiet cua hoa don
+    public function getInvoiceDetailsByInvoiceId($invoice_id) {
+        $conn = $this->getDbConnection();
+
+        if (!$conn) {
+            return [];
+        }
+
+        $sql = "SELECT * FROM invoice_details WHERE invoice_id = :invoice_id ORDER BY id ASC";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['invoice_id' => $invoice_id]);
+
+        $details = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $details[] = new InvoiceDetail(
+                $row['id'],
+                $row['invoice_id'],
+                $row['drink_name'],
+                $row['price'],
+                $row['quantity'],
+                $row['total_price']
+            );
+        }
+
+        return $details;
+    }
+
+    // Luu hoa don 1 mon (giu lai de tuong thich nguoc neu can)
     public function addInvoice(
         $staff_name,
         $drink_name,
