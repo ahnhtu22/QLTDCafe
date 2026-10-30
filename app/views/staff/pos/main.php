@@ -169,11 +169,10 @@
 
                         <div class="mb-3">
                             <label for="quantity" class="form-label fw-semibold">
-<<<<<<< Updated upstream
+
                                 Số lượng  <span class="text-danger">*</span>
-=======
-                                Số lượng (ly) <span class="text-danger">*</span>
->>>>>>> Stashed changes
+                              
+
                             </label>
 
                             <input type="number"
