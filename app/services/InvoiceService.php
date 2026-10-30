@@ -10,7 +10,7 @@ class InvoiceService {
         return $db->getConnection();
     }
 
-    // Lay danh sach do uong con ban
+    // Lay toan bo danh sach do uong de ban tai quay (kem trang thai con/het mon)
     public function getAllDrinks() {
         $conn = $this->getDbConnection();
 
@@ -18,7 +18,7 @@ class InvoiceService {
             return [];
         }
 
-        $sql = "SELECT * FROM drinks";
+        $sql = "SELECT * FROM drinks ORDER BY id ASC";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
@@ -39,7 +39,39 @@ class InvoiceService {
         return $drinks;
     }
 
-    // Tim do uong theo ten, khong phan biet chu hoa chu thuong
+    // Tim kiem do uong theo tu khoa (ho tro ca co dau va khong dau)
+    public function searchDrinks($keyword) {
+        $conn = $this->getDbConnection();
+
+        if (!$conn) {
+            return [];
+        }
+
+        $sql = "SELECT * FROM drinks 
+                WHERE LOWER(name) LIKE LOWER(:keyword)
+                ORDER BY id ASC";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['keyword' => '%' . trim($keyword) . '%']);
+
+        $drinks = [];
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $drinks[] = new Drink(
+                $row['id'],
+                $row['category_id'],
+                $row['name'],
+                $row['price'],
+                $row['status'],
+                $row['image_url'],
+                $row['description']
+            );
+        }
+
+        return $drinks;
+    }
+
+    // Tim do uong theo ten
     public function getDrinkByName($drink_name) {
         $conn = $this->getDbConnection();
 
@@ -49,7 +81,6 @@ class InvoiceService {
 
         $sql = "SELECT * FROM drinks
                 WHERE LOWER(TRIM(name)) = LOWER(TRIM(:name))
-                AND status = 'Còn món'
                 LIMIT 1";
 
         $stmt = $conn->prepare($sql);
@@ -77,8 +108,7 @@ class InvoiceService {
         $staff_name,
         $drink_name,
         $quantity,
-        $total_price,
-     
+        $total_price
     ) {
         $conn = $this->getDbConnection();
 
@@ -97,8 +127,7 @@ class InvoiceService {
             'staff_name' => $staff_name,
             'drink_name' => $drink_name,
             'quantity' => $quantity,
-            'total_price' => $total_price,
-           
+            'total_price' => $total_price
         ]);
 
         if ($result) {
@@ -132,8 +161,7 @@ class InvoiceService {
             $row['drink_name'],
             $row['quantity'],
             $row['total_price'],
-            $row['created_at'],
-           
+            $row['created_at']
         );
     }
 }

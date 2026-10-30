@@ -5,48 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm tài khoản nhân viên - QLTDCafe Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
-<body class="bg-light">
+<body>
 
     <!-- Admin Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-cafe mb-4">
         <div class="container">
             <a class="navbar-brand fw-bold" href="?controller=admin&action=index">
                 <i class="bi bi-cup-hot-fill text-warning me-2"></i>QLTDCafe Admin
             </a>
-            <div class="collapse navbar-collapse" id="adminNavbar">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="?controller=admin&action=index">
-                            <i class="bi bi-cup-straw me-1"></i> Quản lý Đồ uống
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?controller=category&action=index">
-                            <i class="bi bi-tags-fill me-1"></i> Quản lý Loại đồ uống
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="?controller=user&action=staffList">
-                            <i class="bi bi-people-fill me-1"></i> Quản lý Nhân viên
-                        </a>
-                    </li>
-                </ul>
-                <div class="d-flex align-items-center text-white">
-                    <a href="?controller=user&action=logout" class="btn btn-outline-danger btn-sm">
-                        <i class="bi bi-box-arrow-right me-1"></i> Đăng xuất
-                    </a>
-                </div>
+            <div class="ms-auto text-white">
+                <a href="?controller=user&action=staffList" class="btn btn-outline-light btn-sm">
+                    <i class="bi bi-arrow-left me-1"></i> Quay lại danh sách
+                </a>
             </div>
         </div>
     </nav>
 
-    <div class="container" style="max-width: 600px;">
-        <div class="card shadow-sm border-0">
-            <div class="card-header bg-primary text-white py-3">
+    <div class="container pb-5" style="max-width: 580px;">
+        <div class="card card-cafe">
+            <div class="card-cafe-header">
                 <h5 class="mb-0 fw-bold">
-                    <i class="bi bi-person-plus-fill me-2"></i>Tạo tài khoản mới cho nhân viên
+                    <i class="bi bi-person-plus-fill me-2"></i>Tạo tài khoản mới
                 </h5>
             </div>
             <div class="card-body p-4">
@@ -82,7 +64,7 @@
                                 <option value="admin">Quản trị viên (admin)</option>
                             </select>
                         </div>
-                        <small class="text-muted">Mặc định tài khoản được cấp là quyền Nhân viên.</small>
+                        <small class="text-muted">Mặc định tài khoản được cấp quyền Nhân viên.</small>
                     </div>
 
                     <div class="mb-3">
@@ -117,7 +99,7 @@
                         <a href="?controller=user&action=staffList" class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left me-1"></i> Quay lại
                         </a>
-                        <button type="submit" class="btn btn-primary px-4">
+                        <button type="submit" class="btn btn-cafe px-4">
                             <i class="bi bi-check-circle-fill me-1"></i> Tạo tài khoản
                         </button>
                     </div>
@@ -129,4 +111,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
