@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -12,7 +11,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
     <!-- CSS giao diện bán hàng -->
-    <link rel="stylesheet" href="/QLTDCafe-main/QLTDCafe-main/public/css/style.css">
+    <link rel="stylesheet" href="/QLTDCafe-main/QLTDCafe/public/css/style.css">
 </head>
 
 <body>
