@@ -1,4 +1,3 @@
-
 <?php
 
 class Drink {
@@ -38,6 +37,19 @@ class Drink {
 
     public function getStatus() {
         return $this->status;
+    }
+
+    // Chuyển đổi trạng thái (1, '1', 'Còn món' -> 'Còn món'; ngược lại là 'Hết món')
+    public function getStatusText() {
+        if ($this->status == '1' || $this->status === 'Còn món') {
+            return 'Còn món';
+        }
+        return 'Hết món';
+    }
+
+    // Kiểm tra món còn bán được không
+    public function isAvailable() {
+        return $this->status == '1' || $this->status === 'Còn món';
     }
 
     public function getImageUrl() {

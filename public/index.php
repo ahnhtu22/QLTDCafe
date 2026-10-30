@@ -11,7 +11,6 @@ $controller = $_GET['controller'] ?? 'home';
 $action = $_GET['action'] ?? 'index';
 $id = $_GET['id'] ?? $_POST['id'] ?? null;
 
-// ================= USER CONTROLLER =================
 if ($controller == 'user') {
     require_once APP_ROOT . '/app/controllers/UserController.php';
     $userController = new UserController();
@@ -38,7 +37,6 @@ if ($controller == 'user') {
         echo 'Action không tồn tại!';
     }
 
-// ================= CATEGORY CONTROLLER =================
 } else if ($controller == 'category') {
     require_once APP_ROOT . '/app/controllers/CategoryController.php';
     $categoryController = new CategoryController();
@@ -61,7 +59,7 @@ if ($controller == 'user') {
         echo 'Action không tồn tại!';
     }
 
-// ================= ADMIN CONTROLLER (ĐỒ UỐNG) =================
+
 } else if ($controller == 'admin') {
     require_once APP_ROOT . '/app/controllers/AdminController.php';
     $adminController = new AdminController();
@@ -84,7 +82,7 @@ if ($controller == 'user') {
         echo 'Action không tồn tại!';
     }
 
-// ================= POS CONTROLLER =================
+
 } else if ($controller == 'pos') {
     require_once APP_ROOT . '/app/controllers/PosController.php';
     if (class_exists('PosController')) {
@@ -100,7 +98,6 @@ if ($controller == 'user') {
         echo 'Chức năng POS đang được phát triển!';
     }
 
-// ================= HOME CONTROLLER =================
 } else if ($controller == 'home') {
     require_once APP_ROOT . '/app/controllers/HomeController.php';
     $homeController = new HomeController();

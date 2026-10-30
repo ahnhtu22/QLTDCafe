@@ -1,12 +1,17 @@
-/* Cấu hình chung & Biến màu sắc */
+/* ========================================================
+   Giao diện Bán hàng (POS) & Hóa đơn - QLTDCafe
+   Đồng bộ màu sắc với Home, Login & Admin
+   ======================================================== */
+
 :root {
-    --coffee: #5b3827;
-    --coffee-light: #80563d;
-    --cream: #f7f0e4;
-    --cream-dark: #e8dac5;
-    --white: #fffdf8;
-    --text: #38271e;
-    --muted: #8a796b;
+    --coffee: #6f4e37;
+    --coffee-dark: #4a2e1b;
+    --coffee-light: #543a29;
+    --cream: #fdfbf7;
+    --cream-dark: #e8c9a8;
+    --white: #ffffff;
+    --text: #444444;
+    --muted: #777777;
 }
 
 * {
@@ -16,47 +21,50 @@
 body {
     background-color: var(--cream);
     color: var(--text);
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* 1. TRANG BÁN HÀNG (POS & FORM)*/
+/* 1. TRANG BÁN HÀNG (POS) */
 .topbar {
-    background: var(--coffee);
+    background: var(--coffee-dark);
     color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
 .topbar .brand {
     color: var(--white);
-    font-family: Arial, sans-serif;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: bold;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
 }
 
 .nav-link-custom {
-    color: var(--cream-dark);
+    color: #f5e6d3;
     text-decoration: none;
     font-size: 14px;
-    padding: 10px 12px;
+    font-weight: 500;
+    padding: 8px 14px;
     border-radius: 6px;
     transition: background 0.2s, color 0.2s;
 }
 
 .nav-link-custom:hover,
 .nav-link-custom.active {
-    background: var(--coffee-light);
+    background: rgba(255, 255, 255, 0.12);
     color: var(--white);
 }
 
 /* Tiêu đề trang bán hàng */
 .page-heading {
-    margin: 30px 0 22px;
+    margin: 30px 0 24px;
 }
 
 .page-heading h2 {
-    font-size: 25px;
+    font-size: 26px;
     font-weight: bold;
     margin-bottom: 6px;
     color: var(--coffee);
@@ -65,24 +73,83 @@ body {
 .page-heading p {
     color: var(--muted);
     margin: 0;
-    font-size: 14px;
+    font-size: 15px;
+}
+
+/* Khung nội dung bán hàng */
+.panel {
+    background: var(--white);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(75, 45, 25, 0.08);
+    padding: 28px;
+    height: auto;
+    min-width: 0;
+}
+
+.panel-title {
+    font-size: 19px;
+    font-weight: bold;
+    color: var(--coffee);
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f0e6dc;
+}
+
+/* Các bước hướng dẫn */
+.info-panel {
+    background: var(--cream);
+    border: 1px solid #f0e6dc;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+}
+
+.info-panel h6 {
+    font-weight: bold;
+    color: var(--coffee);
+    margin: 0 0 6px;
+    font-size: 15px;
+}
+
+.info-panel p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Ô nhập liệu form */
+.form-control, .form-select {
+    min-height: 42px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: var(--white);
+    color: var(--text);
+    padding: 10px 14px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--coffee);
+    box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.15);
+    background-color: var(--white);
+    color: var(--text);
 }
 
 /* Nút thanh toán */
 .btn-checkout {
     display: block;
     width: 100%;
-    min-height: 44px;
-    padding: 10px 16px;
+    min-height: 46px;
+    padding: 12px 18px;
     background: var(--coffee);
     color: var(--white);
     border: none;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background .2s;
+    transition: background 0.2s, transform 0.1s;
 }
 
 .btn-checkout:hover {
@@ -90,93 +157,33 @@ body {
     color: var(--white);
 }
 
-/* Khung nội dung bán hàng */
-.panel {
-    background: var(--white);
-    border: 1px solid var(--cream-dark);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(91, 56, 39, .06);
-    padding: 25px;
-    height: auto;
-    min-width: 0;
-}
-
-.panel-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--coffee);
-    margin-bottom: 22px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--cream-dark);
-}
-
-/* Các bước hướng dẫn */
-.info-panel {
-    background: var(--white);
-    border: 1px solid var(--cream-dark);
-    border-radius: 8px;
-    padding: 18px;
-    height: auto;
-    min-height: 0;
-    margin-bottom: 12px;
-}
-
-.info-panel h6 {
-    font-weight: bold;
-    color: var(--coffee);
-    margin: 0 0 10px;
-}
-
-.info-panel p {
-    font-size: 13px;
-    color: var(--muted);
-    margin: 0;
-    line-height: 1.7;
-}
-
-/* Ô nhập liệu form */
-.form-control {
-    min-height: 42px;
-    border: 1px solid var(--cream-dark);
-    border-radius: 6px;
-    background-color: var(--white);
-    color: var(--text);
-}
-
-.form-control:focus {
-    border-color: var(--coffee-light);
-    box-shadow: 0 0 0 .2rem rgba(128, 86, 61, .15);
-    background-color: var(--white);
-    color: var(--text);
-}
-
 /* Chân trang */
 .footer {
     text-align: center;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 13px;
     padding: 25px 0;
-    border-top: 1px solid var(--cream-dark);
-    margin-top: 40px;
+    border-top: 1px solid #eee5dc;
+    margin-top: 45px;
 }
 
 
-/* 2. GIAO DIỆN HÓA ĐƠN*/
+/* 2. GIAO DIỆN HÓA ĐƠN */
 .invoice {
-    max-width: 760px;
-    margin: 30px auto;
+    max-width: 700px;
+    margin: 35px auto;
     background: var(--white);
     border-radius: 18px;
-    box-shadow: 0 6px 20px rgba(91, 56, 39, 0.08);
+    box-shadow: 0 8px 25px rgba(75, 45, 25, 0.12);
     overflow: hidden;
-    border: 1px solid var(--cream-dark);
+    border: 1px solid #f0e6dc;
 }
 
 .invoice-header {
     background: var(--coffee);
     color: var(--white);
     text-align: center;
-    padding: 34px 24px 30px;
+    padding: 32px 24px 28px;
 }
 
 .invoice-header .brand {
@@ -188,21 +195,22 @@ body {
 
 .invoice-header .tagline {
     font-size: 12px;
-    color: var(--cream-dark);
+    color: #f5e6d3;
     letter-spacing: 2px;
-    margin: 0 0 15px;
+    margin: 0 0 14px;
     text-transform: uppercase;
 }
 
 .invoice-header .header-line {
     width: 50px;
-    height: 2px;
-    background: var(--coffee-light);
+    height: 3px;
+    background: #e8c9a8;
     margin: 0 auto;
+    border-radius: 2px;
 }
 
 .invoice-body {
-    padding: 30px;
+    padding: 32px;
 }
 
 /* Thông tin mã đơn và thời gian */
@@ -212,9 +220,9 @@ body {
     gap: 18px;
     padding: 16px 20px;
     background: var(--cream);
-    border-radius: 8px;
-    border: 1px solid var(--cream-dark);
-    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #f0e6dc;
+    margin-bottom: 22px;
 }
 
 .info-box .info-label {
@@ -229,32 +237,28 @@ body {
 }
 
 /* Căn giữa tiêu đề hóa đơn */
-.invoice .invoice-title,
-.invoice .invoice-title h2,
-.invoice .section-title {
-    text-align: center;
-    color: var(--coffee);
-}
-
 .invoice .invoice-title h2 {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: bold;
     margin-bottom: 20px;
+    text-align: center;
+    color: var(--coffee);
 }
 
 .invoice .section-title {
     font-size: 16px;
     font-weight: bold;
-    margin: 25px 0 12px;
+    margin: 22px 0 12px;
+    color: var(--coffee);
 }
 
-/* Bảng chi tiết đơn hàng và ghi chú */
+/* Bảng chi tiết đơn hàng */
 .invoice .table-wrap {
     width: 100%;
     margin-top: 12px;
     overflow-x: auto;
-    border: 1px solid var(--cream-dark);
-    border-radius: 8px;
+    border: 1px solid #f0e6dc;
+    border-radius: 10px;
 }
 
 .invoice .order-table {
@@ -266,32 +270,33 @@ body {
 
 .invoice .order-table th {
     padding: 14px 16px;
-    background: var(--cream);
-    color: var(--coffee);
+    background: var(--coffee);
+    color: var(--white);
     font-size: 13px;
     font-weight: bold;
     text-align: left;
-    border-bottom: 1px solid var(--cream-dark);
+    border: none;
 }
 
 .invoice .order-table td {
     padding: 16px;
     font-size: 14px;
     color: var(--text);
-    border-bottom: 1px solid #eee8df;
+    border-bottom: 1px solid #f5ede6;
 }
 
 .invoice .order-table tbody tr:last-child td {
     border-bottom: none;
 }
 
-.invoice .order-table .drink-name,
-.invoice .order-table .order-price {
+.invoice .order-table .drink-name {
     font-weight: bold;
-    color: var(--coffee);
+    color: var(--coffee-dark);
 }
 
 .invoice .order-table .order-price {
+    font-weight: bold;
+    color: var(--coffee);
     white-space: nowrap;
 }
 
@@ -322,15 +327,17 @@ body {
     justify-content: center;
     align-items: center;
     gap: 12px;
-    margin-top: 30px;
+    margin-top: 25px;
     padding: 20px 0 10px;
-    border-top: 1px solid var(--cream-dark);
+    border-top: 1px solid #f0e6dc;
 }
 
 .invoice .btn {
-    display: inline-block;
-    padding: 11px 20px;
-    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 22px;
+    border-radius: 8px;
     font-size: 14px;
     font-weight: bold;
     text-decoration: none;
@@ -342,7 +349,12 @@ body {
 .invoice .btn-print {
     background: var(--coffee);
     color: var(--white);
-    border: 1px solid var(--coffee);
+    border: none;
+}
+
+.invoice .btn-print:hover {
+    background: var(--coffee-light);
+    color: var(--white);
 }
 
 .invoice .btn-back {
@@ -351,15 +363,10 @@ body {
     border: 1px solid var(--coffee);
 }
 
-.invoice .btn-print:hover {
-    background: var(--coffee-light);
-    border-color: var(--coffee-light);
-}
-
 .invoice .btn-back:hover {
-    background: var(--cream);
+    background: var(--coffee);
+    color: var(--white);
 }
-
 
 @media (max-width: 576px) {
     .page-heading {
@@ -376,28 +383,10 @@ body {
     }
     
     .invoice-body {
-        padding: 15px;
+        padding: 20px;
     }
 }
 
-@media (max-width: 480px) {
-    .invoice .actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .invoice .btn {
-        width: 100%;
-    }
-
-    .invoice .order-table th,
-    .invoice .order-table td {
-        padding: 12px 8px;
-        font-size: 12px;
-    }
-}
-
-/* Khi in hóa đơn: ẩn nút chức năng và bỏ bóng đổ */
 @media print {
     body {
         background: white;
