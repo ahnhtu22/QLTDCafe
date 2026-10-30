@@ -166,6 +166,44 @@
                                 <?php endif; ?>
                             </div>
                         </div>
+
+                        <!--<div class="mb-3">
+                            <label for="quantity" class="form-label fw-semibold">
+                                Số lượng  <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   id="quantity"
+                                   name="quantity"
+                                   min="1"
+                                   value="1"
+                                   required>
+                        </div>
+
+                       
+                        <div class="mb-4">
+                            <label for="note" class="form-label fw-semibold">Ghi chú khẩu vị (Note)</label>
+                            <textarea class="form-control"
+                                      id="note"
+                                      name="note"
+                                      rows="3"
+                                      placeholder="Ví dụ: Ít đá, 50% đường, mang về..."></textarea>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <?php if ($currentDrink && !$currentDrink->isAvailable()): ?>
+                                <button type="button" class="btn btn-secondary disabled py-2" style="font-size: 15px;">
+                                    <i class="bi bi-slash-circle me-2"></i>Món này hiện đang Hết món
+                                </button>
+                            <?php else: ?>
+                                <button type="submit" class="btn btn-checkout">
+                                    <i class="bi bi-check2-circle me-2"></i>Thanh toán đơn hàng
+                                </button>
+                            <?php endif; ?>
+                        </div>-->
+
+
                     </form>
                 </div>
 
