@@ -169,7 +169,7 @@
 
                         <div class="mb-3">
                             <label for="quantity" class="form-label fw-semibold">
-                                Số lượng (ly) <span class="text-danger">*</span>
+                                Số lượng  <span class="text-danger">*</span>
                             </label>
 
                             <input type="number"
