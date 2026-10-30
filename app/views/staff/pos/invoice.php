@@ -11,7 +11,7 @@
           rel="stylesheet">
 
     <!-- CSS chung -->
-    <link rel="stylesheet" href="/QLTDCafe-main/QLTDCafe-main/public/css/style.css">
+    <link rel="stylesheet" href="/QLTDCafe-main/QLTDCafe/public/css/style.css">
 </head>
 
 <body>
