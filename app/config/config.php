@@ -1,6 +1,6 @@
 <?php
 define('APP_ROOT', dirname(__FILE__,3));
-define('DOMAIN', 'http://localhost/QLTDCafe');
+define('DOMAIN', 'http://localhost/PHPMVCQLTDCafe/');
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
