@@ -52,8 +52,8 @@
 
         <!-- Tiêu đề trang -->
         <div class="page-heading">
-            <h2><i class="bi bi-cart-check-fill me-2"></i>POS</h2>
-            <p></p>
+            <h2><i class="bi bi-cart-check-fill me-2"></i>Bán hàng tại quầy (POS)</h2>
+            <p>Chọn các món đồ uống vào đơn hàng và thanh toán nhanh chóng.</p>
         </div>
 
         <?php if (!empty($_GET['error'])): ?>
@@ -66,148 +66,8 @@
 
         <div class="row g-4">
 
-            <!-- CỘT TRÁI: CHỌN MÓN & DANH SÁCH MÓN TRONG ĐƠN HÀNG -->
+            <!-- CỘT TRÁI: DANH SÁCH MÓN ĐÃ CHỌN TRONG ĐƠN HÀNG -->
             <div class="col-lg-7">
-
-                <!-- 1. KHUNG CHỌN MÓN ĐỂ THÊM VÀO ĐƠN -->
-                <div class="panel mb-4">
-                    <div class="panel-title">
-                        <i class="bi bi-plus-circle text-warning me-2"></i>Chọn món
-                    </div>
-
-                    <!-- Tìm kiếm món bằng PHP MVC -->
-                    <form method="GET" action="index.php" class="mb-3 p-3 rounded" style="background-color: #fdfbf7; border: 1px solid #e8c9a8;">
-                        <input type="hidden" name="controller" value="pos">
-                        <input type="hidden" name="action" value="index">
-
-                        <div class="input-group">
-                            <input type="text"
-                                   class="form-control"
-                                   name="search"
-                                   placeholder="Nhập tên món cần lọc (ví dụ: cà phê, trà, dưa hấu...)"
-                                   value="<?= htmlspecialchars($search ?? '') ?>"
-                                   autocomplete="off">
-                            <button type="submit" class="btn btn-checkout" style="width: auto; min-height: unset; padding: 0 18px;">
-                                <i class="bi bi-search me-1"></i> Lọc
-                            </button>
-                            <?php if (!empty($search)): ?>
-                                <a href="?controller=pos&action=index" class="btn btn-outline-secondary d-flex align-items-center" title="Xem tất cả">
-                                    <i class="bi bi-x-circle me-1"></i> Tất cả
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                    </form>
-
-                    <!-- Form thêm món vào hóa đơn -->
-                    <form action="?controller=pos&action=addToCart" method="POST">
-                        <div class="mb-3">
-                            <label for="drink_name" class="form-label fw-semibold">
-                                Tên đồ uống <span class="text-danger">*</span>
-                            </label>
-
-                            <select class="form-select" id="drink_name" name="drink_name" required
-                                    onchange="window.location.href='?controller=pos&action=index<?= !empty($search) ? '&search=' . urlencode($search) : '' ?>&selected_drink=' + encodeURIComponent(this.value)">
-                                <?php if (!empty($drinks)): ?>
-                                    <option value="">-- Chọn món đồ uống (<?= count($drinks) ?> món) --</option>
-                                    <?php foreach ($drinks as $d): ?>
-                                        <option value="<?= htmlspecialchars($d->getName()) ?>"
-                                            <?= ($selected_drink === $d->getName()) ? 'selected' : '' ?>>
-                                            [<?= $d->getStatusText() ?>] <?= htmlspecialchars($d->getName()) ?> — <?= number_format($d->getPrice(), 0, ',', '.') ?> đ
-                                        </option>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <option value="">Không tìm thấy đồ uống nào phù hợp!</option>
-                                <?php endif; ?>
-                            </select>
-                        </div>
-
-                        <!-- Ô hiển thị trạng thái món -->
-                        <div class="mb-3 p-2 px-3 rounded border d-flex justify-content-between align-items-center" style="background-color: #fdfbf7;">
-                            <div>
-                                <span class="text-muted" style="font-size: 13px;">Đang chọn:</span>
-                                <strong style="color: #4a2e1b;" class="ms-1">
-                                    <?= htmlspecialchars($currentDrink ? $currentDrink->getName() : 'Chưa chọn') ?>
-                                </strong>
-                                <?php if ($currentDrink): ?>
-                                    <span class="ms-2 fw-semibold" style="color: #6f4e37;">
-                                        (<?= number_format($currentDrink->getPrice(), 0, ',', '.') ?> đ)
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                            <div>
-                                <?php if ($currentDrink && $currentDrink->isAvailable()): ?>
-                                    <span class="badge bg-success py-2 px-3">
-                                        <i class="bi bi-check-circle-fill me-1"></i> Còn món
-                                    </span>
-                                <?php elseif ($currentDrink): ?>
-                                    <span class="badge bg-danger py-2 px-3">
-                                        <i class="bi bi-x-circle-fill me-1"></i> Hết món
-                                    </span>
-                                <?php else: ?>
-                                    <span class="badge bg-secondary py-2 px-3">Chưa chọn</span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <div class="row g-2 align-items-end">
-                            <div class="col-4">
-                                <label for="quantity" class="form-label fw-semibold">Số lượng</label>
-                                <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="1" required>
-                            </div>
-                            <div class="col-8">
-                                <?php if ($currentDrink && !$currentDrink->isAvailable()): ?>
-                                    <button type="button" class="btn btn-secondary w-100 disabled" style="min-height: 44px;">
-                                        <i class="bi bi-slash-circle me-1"></i> Món này đang hết
-                                    </button>
-                                <?php else: ?>
-                                    <button type="submit" class="btn btn-checkout w-100" style="min-height: 44px;">
-                                        <i class="bi bi-cart-plus-fill me-1"></i> Thêm vào đơn hàng
-                                    </button>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <!--<div class="mb-3">
-                            <label for="quantity" class="form-label fw-semibold">
-                                Số lượng  <span class="text-danger">*</span>
-                            </label>
-
-                            <input type="number"
-                                   class="form-control"
-                                   id="quantity"
-                                   name="quantity"
-                                   min="1"
-                                   value="1"
-                                   required>
-                        </div>
-
-                       
-                        <div class="mb-4">
-                            <label for="note" class="form-label fw-semibold">Ghi chú khẩu vị (Note)</label>
-                            <textarea class="form-control"
-                                      id="note"
-                                      name="note"
-                                      rows="3"
-                                      placeholder="Ví dụ: Ít đá, 50% đường, mang về..."></textarea>
-                        </div>
-
-                        <div class="d-grid mt-4">
-                            <?php if ($currentDrink && !$currentDrink->isAvailable()): ?>
-                                <button type="button" class="btn btn-secondary disabled py-2" style="font-size: 15px;">
-                                    <i class="bi bi-slash-circle me-2"></i>Món này hiện đang Hết món
-                                </button>
-                            <?php else: ?>
-                                <button type="submit" class="btn btn-checkout">
-                                    <i class="bi bi-check2-circle me-2"></i>Thanh toán đơn hàng
-                                </button>
-                            <?php endif; ?>
-                        </div>-->
-
-
-                    </form>
-                </div>
-
-                <!-- 2. BẢNG CÁC MÓN ĐÃ CHỌN TRONG ĐƠN HÀNG HIỆN TẠI -->
                 <div class="panel">
                     <div class="panel-title d-flex justify-content-between align-items-center">
                         <div>
@@ -296,35 +156,65 @@
                         </form>
 
                     <?php else: ?>
-                        <div class="text-center py-4 text-muted">
-                            <i class="bi bi-cart-x fs-1 text-secondary d-block mb-2"></i>
-                            <p class="mb-1">Hóa đơn hiện tại chưa có món nào.</p>
-                            <small>Vui lòng chọn đồ uống ở phía trên và bấm <strong>"Thêm vào đơn hàng"</strong>.</small>
+                        <div class="text-center py-5 text-muted">
+                            <i class="bi bi-cart-x fs-1 text-secondary d-block mb-3"></i>
+                            <h6 class="fw-bold text-dark">Hóa đơn hiện tại chưa có món nào</h6>
+                            <p class="mb-0 text-muted" style="font-size: 14px;">
+                                Vui lòng bấm nút <strong>[+ Thêm]</strong> ở danh sách thực đơn bên phải để đưa món vào đơn hàng.
+                            </p>
                         </div>
                     <?php endif; ?>
 
                 </div>
             </div>
 
-            <!-- CỘT PHẢI: THỰC ĐƠN THAM KHẢO & BẤM THÊM NHANH -->
+            <!-- CỘT PHẢI: THỰC ĐƠN THAM KHẢO & BẤM THÊM NHANH (1 CLICK) -->
             <div class="col-lg-5">
                 <div class="panel">
 
                     <div class="panel-title">
-                        <i class="bi bi-grid-fill text-warning me-2"></i>Thêm nhanh
+                        <i class="bi bi-grid-fill text-warning me-2"></i>Thực đơn & Thêm món (1 click)
                     </div>
+
+                    <!-- Tìm kiếm món bằng PHP MVC -->
+                    <form method="GET" action="index.php" class="mb-3">
+                        <input type="hidden" name="controller" value="pos">
+                        <input type="hidden" name="action" value="index">
+
+                        <div class="input-group">
+                            <input type="text"
+                                   class="form-control"
+                                   name="search"
+                                   placeholder="Tìm tên món (cà phê, trà, bánh...)"
+                                   value="<?= htmlspecialchars($search ?? '') ?>"
+                                   autocomplete="off">
+                            <button type="submit" class="btn btn-checkout" style="width: auto; min-height: unset; padding: 0 16px;">
+                                <i class="bi bi-search"></i>
+                            </button>
+                            <?php if (!empty($search)): ?>
+                                <a href="?controller=pos&action=index" class="btn btn-outline-secondary d-flex align-items-center" title="Xem tất cả">
+                                    Tất cả
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                        <?php if (!empty($search)): ?>
+                            <small class="text-success mt-1 d-block fw-semibold" style="font-size: 12px;">
+                                <i class="bi bi-check-circle-fill me-1"></i>Tìm thấy <?= count($drinks) ?> món với từ khóa "<?= htmlspecialchars($search) ?>"
+                            </small>
+                        <?php endif; ?>
+                    </form>
 
                     <?php if (!empty($drinks)): ?>
                         <p class="text-muted mb-3" style="font-size: 13px;">
-                            Bấm dấu <strong>[+]</strong> để thêm ngay món vào hóa đơn:
+                            Bấm nút <strong>[+ Thêm]</strong> để đưa món vào hóa đơn:
                         </p>
-                        <div class="d-flex flex-column gap-2 mb-4" style="max-height: 480px; overflow-y: auto;">
+                        <div class="d-flex flex-column gap-2 mb-3" style="max-height: 520px; overflow-y: auto;">
                             <?php foreach ($drinks as $d): ?>
-                                <div class="p-2 px-3 rounded border d-flex justify-content-between align-items-center bg-white">
+                                <div class="p-2 px-3 rounded border d-flex justify-content-between align-items-center bg-white shadow-sm">
                                     <div>
                                         <i class="bi bi-cup-hot me-2" style="color: #6f4e37;"></i>
                                         <strong style="color: #4a2e1b;"><?= htmlspecialchars($d->getName()) ?></strong>
-                                        <div class="text-muted" style="font-size: 12px;">
+                                        <div class="text-muted mt-1" style="font-size: 12px;">
                                             Giá: <strong style="color: #6f4e37;"><?= number_format($d->getPrice(), 0, ',', '.') ?> đ</strong>
                                             <?php if ($d->isAvailable()): ?>
                                                 <span class="badge bg-success ms-1" style="font-size: 10px;">Còn món</span>
@@ -338,8 +228,8 @@
                                             <form action="?controller=pos&action=addToCart" method="POST" class="d-inline">
                                                 <input type="hidden" name="drink_name" value="<?= htmlspecialchars($d->getName()) ?>">
                                                 <input type="hidden" name="quantity" value="1">
-                                                <button type="submit" class="btn btn-outline-cafe btn-sm py-1 px-2" title="Thêm vào đơn">
-                                                    <i class="bi bi-plus-lg"></i> Thêm
+                                                <button type="submit" class="btn btn-outline-cafe btn-sm py-1 px-3" title="Thêm vào đơn hàng">
+                                                    <i class="bi bi-plus-lg me-1"></i>Thêm
                                                 </button>
                                             </form>
                                         <?php else: ?>
@@ -356,17 +246,6 @@
                             Không tìm thấy đồ uống nào. Hãy bấm "Tất cả" để hiển thị lại menu.
                         </div>
                     <?php endif; ?>
-
-                    <!--<div class="border-top pt-3">
-                        <h6 class="fw-bold mb-2" style="color: #6f4e37;">
-                            <i class="bi bi-info-circle me-1"></i>Quy trình gọi nhiều món:
-                        </h6>
-                        <ol class="text-muted ps-3 mb-0" style="font-size: 13px; line-height: 1.7;">
-                            <li>Chọn món và bấm <strong>Thêm vào đơn</strong> (hoặc bấm nút <strong>+ Thêm</strong> ở cột bên phải).</li>
-                            <li>Tùy chỉnh số lượng bằng nút <strong>+ / -</strong> trong bảng hóa đơn.</li>
-                            <li>Sau khi khách chốt toàn bộ món, bấm <strong>Thanh toán & Xuất hóa đơn</strong>.</li>
-                        </ol>
-                    </div>-->
 
                 </div>
             </div>
